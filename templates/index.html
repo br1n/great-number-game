@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .red{
+            background-color: red;
+        }
+        .green{
+            background-color: green;
+        }
+        .box{
+            color: white;
+            font-family: 'Courier New', Courier, monospace;
+            height: 75px;
+            width: 150px;
+            padding-top: 50px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <h5>session data: {{session["correct"]}}, {{session["result"]}}</h5>
+        <h1>Great Number Game</h1>
+        <h2>I am thinking of a number between 1 - 100</h2>
+        <h3>Take a guess...</h3>
+        
+        {% if result == "high" %}
+        <div class="red box">Too High</div>
+        
+        {% elif  result == "low" %}
+        <div class="red box">Too Low</div>
+
+        {% elif  result == "correct" %}
+        <div class="green box">{{session["correct"]}} was the correct number! </div>
+        <form action='/reset'>
+            <input type="submit" name="" value="reset">
+        </form>
+        {% endif %}
+        <br>
+        <form action="/guess" method="post"> 
+            <input type="text" name="guess"><br> <!--form text box-->
+            <button type="submit">Submit</button> <!--form submit button-->
+        </form>
+        
+    </center>
+</body>
+</html>
